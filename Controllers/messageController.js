@@ -1,4 +1,5 @@
 const Message = require('../Models/Message');
+const { validateMessage } = require('../Handlers/messageHandler');
 
 exports.getMessages = async (req, res) => {
     const channelId = req.params.channelId;
@@ -16,7 +17,8 @@ exports.getAllMessages = async (req, res) => {
 
 exports.saveMessage = async (req, res) => {
     try {
-        const message = req.body.message
+        const message = req.body.message;
+        if(!validateMessage(message)) { return; }
         await Message.create(message).save();
         res.json(message);
     }
@@ -30,38 +32,44 @@ exports.sendOfflineMessages = (req, res) => {
                 {
                     "message": "Hello World!",
                     "timestamp": "1604592053",
-                    "user": "Naveen",
-                    "userImage": "https://i.picsum.photos/id/866/200/300.jpg?hmac=rcadCENKh4rD6MAp6V_ma-AyWv641M4iiOpe1RyFHeI"
+                    "senderName": "Naveen",
+                    "profileImage": "https://i.picsum.photos/id/866/200/300.jpg?hmac=rcadCENKh4rD6MAp6V_ma-AyWv641M4iiOpe1RyFHeI",
+                    "channelId": "ksdmnfgdn"
                 },
                 {
                     "message": "SecondMessage",
-                        "timestamp": "1604592055",
-                    "user": "Raj",
-                    "userImage": "https://i.picsum.photos/id/866/200/300.jpg?dummy"
+                    "timestamp": "1604592055",
+                    "senderName": "Raj",
+                    "profileImage": "https://i.picsum.photos/id/866/200/300.jpg?dummy",
+                    "channelId": "ksdmnfgdn"
                 },
                 {
                     "message": "World!",
                     "timestamp": "1604592053",
-                    "user": "Naveen",
-                    "userImage": "https://i.picsum.photos/id/866/200/300.jpg?hmac=rcadCENKh4rD6MAp6V_ma-AyWv641M4iiOpe1RyFHeI"
+                    "senderName": "Naveen",
+                    "profileImage": "https://i.picsum.photos/id/866/200/300.jpg?hmac=rcadCENKh4rD6MAp6V_ma-AyWv641M4iiOpe1RyFHeI",
+                    "channelId": "ksdmnfgdn"
                 },
                 {
                     "message": "Message",
-                        "timestamp": "1604592055",
-                    "user": "Raj",
-                    "userImage": "https://i.picsum.photos/id/866/200/300.jpg?dummy"
+                    "timestamp": "1604592055",
+                    "senderName": "Raj",
+                    "profileImage": "https://i.picsum.photos/id/866/200/300.jpg?dummy",
+                    "channelId": "ksdmnfgdn"
                 },
                 {
                     "message": "Hello!",
                     "timestamp": "1604592053",
-                    "user": "Naveen",
-                    "userImage": "https://i.picsum.photos/id/866/200/300.jpg?hmac=rcadCENKh4rD6MAp6V_ma-AyWv641M4iiOpe1RyFHeI"
+                    "senderName": "Naveen",
+                    "profileImage": "https://i.picsum.photos/id/866/200/300.jpg?hmac=rcadCENKh4rD6MAp6V_ma-AyWv641M4iiOpe1RyFHeI",
+                    "channelId": "ksdmnfgdn"
                 },
                 {
                     "message": "Secge",
                         "timestamp": "1604592055",
-                    "user": "Raj",
-                    "userImage": "https://i.picsum.photos/id/866/200/300.jpg?dummy"
+                    "senderName": "Raj",
+                    "profileImage": "https://i.picsum.photos/id/866/200/300.jpg?dummy",
+                    "channelId": "ksdmnfgdn"
                 },
             ]);
 }

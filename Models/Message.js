@@ -5,16 +5,16 @@ const messageSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    user: {
+    senderName: {
         type: String,
         required: true,
     },
-    timeStamp: {
+    timestamp: {
         type: Date,
         default: new Date(),
         required: true,
     },
-    userImage: {
+    profileImage: {
         type: String,
     },
     channelId: {

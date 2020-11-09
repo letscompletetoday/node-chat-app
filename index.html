@@ -9,12 +9,27 @@
 <body>
     <h2>Let's Chat</h2>
     <div id="messages"></div>
-    <input type="text" />
-    <input type="button" value="Send Chat"/>
+    <input id="messageTxt" type="text" />
+    <input id="sendBtn" type="button" value="Send Chat"/>
     <script>
+        let socket = io.connect();
         (function() {
-            let socket = io.connect();
+            socket.onmessage = (event) => {
+                console.log(event);
+            }
         })();
+
+        let sendBtn = document.getElementById('sendBtn');
+        let messageTxt = document.getElementById('messageTxt');
+
+        sendBtn.onclick = (event) => {
+            socket.emit('message', {
+                message: messageTxt.value,
+                senderName: 'dsfsdf',
+                profileImage: 'sdggfg',
+                channelId: 'sdfsdfdsf',
+            });
+        }
     </script>
 </body>
 </html>

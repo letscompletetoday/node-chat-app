@@ -1,5 +1,7 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
+app.use(cors());
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 const messageRoute = require('./routes/messageRoutes');
@@ -7,6 +9,7 @@ const channelRoute = require('./routes/channelRoutes');
 const mongoose = require('mongoose');
 const Message = require('./Models/Message');
 const { validateMessage }= require('./Handlers/messageHandler')
+
 app.use(express.json());
 app.use(express.urlencoded({extended: false}))
 
@@ -23,7 +26,7 @@ mongoose.connect("mongodb+srv://letscompletetoday:nov@2020@cluster0.xbcqz.mongod
     console.error(`Failed to connect db.. ${err}`);
 })
 
-server.listen(process.env.PORT || 3300);
+server.listen(process.env.PORT || 8300);
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname+'/index.html');

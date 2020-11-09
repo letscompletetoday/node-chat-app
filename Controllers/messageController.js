@@ -19,7 +19,7 @@ exports.saveMessage = async (req, res) => {
     try {
         const message = req.body.message;
         if(!validateMessage(message)) { return; }
-        await Message.create(message).save();
+        await new Message(message).save();
         res.json(message);
     }
     catch (err) {

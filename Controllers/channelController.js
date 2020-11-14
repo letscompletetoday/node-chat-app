@@ -8,7 +8,7 @@ exports.pullChannels = async (req, res) => {
 
 exports.pullChannel = async (req, res) => {
     const channelId = req.params.channelId;
-    const channel = await Channels.findOne({channelId});
+    const channel = await Channels.findOne({id: channelId});
     if(channel) {
         res.json(channel);
     }

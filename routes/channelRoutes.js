@@ -1,4 +1,3 @@
-const e = require('express');
 const express = require('express');
 const route = express.Router();
 const channelController = require('../Controllers/channelController');

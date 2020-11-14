@@ -6,9 +6,9 @@ const messageRoute = require('./routes/messageRoutes');
 const channelRoute = require('./routes/channelRoutes');
 const mongoose = require('mongoose');
 const Message = require('./Models/Message');
-const { validateMessage }= require('./Handlers/messageHandler')
+const { validateMessage } = require('./Handlers/messageHandler');
 app.use(express.json());
-app.use(express.urlencoded({extended: false}))
+app.use(express.urlencoded({extended: false}));
 
 mongoose.connect("mongodb+srv://letscompletetoday:nov@2020@cluster0.xbcqz.mongodb.net/chat_app_node_development?retryWrites=true&w=majority", {
         useCreateIndex: true,
@@ -29,7 +29,6 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname+'/index.html');
 });
 
-
 app.use('/getMessages', messageRoute);
 app.use('/channels', channelRoute );
 
@@ -42,7 +41,7 @@ io.on('connection', (socket) => {
             await new Message(message).save();
         }
       catch (err) {
-          console.error('Error at socket connection'+err)
+          console.error('Error at socket connection'+err);
       }
     });
 });
